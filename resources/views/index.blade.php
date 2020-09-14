@@ -4,6 +4,13 @@
 </head>
 <body>
 <h3>List of Products</h3>
+@if(Auth::check())
+    Welcome, {{Auth::user()->name}}
+    <br>
+    <a href="{{route("logout")}}">Logout</a>
+    <br>
+    <br>
+@endif
 <a href="{{route("product.add")}}">Add new product</a>
 <table border="1">
     <tr>
