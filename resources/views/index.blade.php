@@ -35,5 +35,28 @@
     @endforeach
 </table>
 {{$product_list->links()}}
+
+<br>
+<br>
+<br>
+
+<a href="{{route("cat.add")}}">Add new category</a>
+<table border="1">
+    <tr>
+        <td>Title</td>
+        <td>Actions</td>
+    </tr>
+    @foreach($cats as $cat)
+        <tr>
+            <td>{{$cat->title}}</td>
+            <td>
+                <a href="{{route("cat.edit", $cat->id)}}">Edit</a>
+                |
+                <a href="{{route("cat.delete", $cat->id)}}">Delete</a>
+            </td>
+        </tr>
+    @endforeach
+</table>
+{{$product_list->links()}}
 </body>
 </html>

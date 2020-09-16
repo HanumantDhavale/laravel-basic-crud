@@ -28,6 +28,22 @@ Route::group(["middleware" => "CustomAuth"], function (){
     Route::get("/product/delete/{id}", "ProductController@delete")
         ->name("product.delete");
 
+    Route::get("/cat/add", "CatController@add")
+        ->name("cat.add");
+
+    Route::post("/cat/save", "CatController@save")
+        ->name("cat.save");
+
+    Route::get("/cat/edit/{cat}", "CatController@edit")
+        ->name("cat.edit");
+
+    Route::post("/cat/update/{cat}", "CatController@update")
+        ->name("cat.update");
+
+    Route::get("/cat/delete/{cat}", "CatController@delete")
+        ->name("cat.delete");
+
+
 });
 
 /*

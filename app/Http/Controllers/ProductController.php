@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cat;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -19,14 +20,17 @@ class ProductController extends Controller{
     }
     public function index(){
         $products = Product::paginate(10);
+        $cats = Cat::paginate(10);
         return view("index", [
-            "product_list" => $products
+            "product_list" => $products,
+            "cats" => $cats
         ]);
     }
     public function edit($id){
         $product = Product::find($id);
         return view("edit", [
-            "product_details" => $product
+            "product_details" => $product,
+            "cats" => $product->categories()->pluck("id")->toArray()
         ]);
     }
 
@@ -36,7 +40,9 @@ class ProductController extends Controller{
             "name" => "required",
             "price" => "required|numeric"
         ]);
+        $product->categories()->detach();
         $product->update($request->all());
+        $product->categories()->attach($request->categories);
         return redirect()->back();
     }
 

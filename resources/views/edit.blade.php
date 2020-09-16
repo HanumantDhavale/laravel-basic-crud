@@ -30,6 +30,11 @@
         Description : <br>
         <textarea name="desc">{{$product_details->desc}}</textarea>
     </p>
+    <p>
+        @foreach(\App\Cat::all() as $cat)
+            <input type="checkbox" name="categories[]" {{in_array($cat->id, $cats)?"checked":null}} value="{{$cat->id}}"> {{$cat->title}}
+        @endforeach
+    </p>
     <button type="submit">Update Product</button>
     <a href="{{route("product.list")}}">Back To List</a>
 </form>
