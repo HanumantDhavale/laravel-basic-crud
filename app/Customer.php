@@ -11,4 +11,9 @@ class Customer extends Model
         "city",
         "age"
     ];
+
+    public function adhar(){
+        return $this->hasOne(AdharDetail::class, "customer_id");
+    }
+
 }

@@ -45,4 +45,15 @@ class ProductController extends Controller{
         $product->delete();
         return redirect()->back();
     }
+
+    public function add_attribute(Product $product, Request $request){
+        $request->validate([
+            "title" => "required",
+            "value" => "required"
+        ]);
+
+        $product->attributes()->create($request->all());
+        return redirect()->back();
+    }
+
 }

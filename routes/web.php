@@ -4,7 +4,7 @@ use \App\Http\Controllers\ProductController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get("/", "ProductController@index")
+Route::get("/products", "ProductController@index")
     ->name("product.list")
     ->middleware("CustomAuth");
 
@@ -22,6 +22,9 @@ Route::group(["middleware" => "CustomAuth"], function (){
     Route::post("/product/update/{id}", "ProductController@update")
         ->name("product.update");
 
+    Route::post("/product/add/attribute/{product}", "ProductController@add_attribute")
+        ->name("product.add.attribute");
+
     Route::get("/product/delete/{id}", "ProductController@delete")
         ->name("product.delete");
 
@@ -31,6 +34,8 @@ Route::group(["middleware" => "CustomAuth"], function (){
  * Laravel ^8.0
  */
 /*Route::get("/", [ProductController::class, 'index']);*/
+
+Route::get("/customers", "CustomerController@index");
 
 Route::get("/customer/add", "CustomerController@add");
 
@@ -47,3 +52,9 @@ Route::post("/login/auth", "AuthController@auth")
 
 Route::get("/logout", "AuthController@logout")
     ->name("logout");
+
+
+
+/*********************Home/base route*******************/
+
+Route::get("/", "HomeController@home");

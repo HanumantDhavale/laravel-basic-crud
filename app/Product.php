@@ -12,4 +12,9 @@ class Product extends Model
         "desc",
         "status"
     ];
+
+    public function attributes(){
+        return $this->hasMany(Attribute::class, "product_id");
+    }
+
 }

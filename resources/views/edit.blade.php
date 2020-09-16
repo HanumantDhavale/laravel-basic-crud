@@ -33,5 +33,34 @@
     <button type="submit">Update Product</button>
     <a href="{{route("product.list")}}">Back To List</a>
 </form>
+@foreach($product_details->attributes as $atrribute)
+    <p>{{$atrribute->title}} : <b>{{$atrribute->value}}</b></p>
+@endforeach
+<form action="{{route("product.add.attribute", $product_details->id)}}" method="POST">
+@csrf
+    <p>
+        Title : <br>
+        <input type="text" name="title" value="{{old('title')}}">
+        @error('title')
+        <br>
+        <span style="color: #f00;">
+            {{$message}}
+        </span>
+        @enderror
+    </p>
+    <p>
+        Value : <br>
+        <input type="text" name="value" value="{{old('value')}}">
+        @error('value')
+        <br>
+        <span style="color: #f00;">
+            {{$message}}
+        </span>
+        @enderror
+    </p>
+    <p>
+        <button type="submit">Add Attribute</button>
+    </p>
+</form>
 </body>
 </html>

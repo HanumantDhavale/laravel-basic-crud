@@ -22,6 +22,16 @@
         @error('age') <div style="color: #f00;">{{$message}}</div> @enderror
     </p>
     <p>
+        Adhar ID : <br>
+        <input type="text" name="adhar_number" value="{{old('adhar_number')}}">
+        @error('adhar_number') <div style="color: #f00;">{{$message}}</div> @enderror
+    </p>
+    <p>
+        Birth Year : <br>
+        <input type="text" name="birth_year" value="{{old('birth_year')}}">
+        @error('birth_year') <div style="color: #f00;">{{$message}}</div> @enderror
+    </p>
+    <p>
         <button type="submit">Save</button>
     </p>
 </form>
