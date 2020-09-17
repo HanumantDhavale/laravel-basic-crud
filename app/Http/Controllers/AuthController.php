@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LoginUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ class AuthController extends Controller
         if(!Auth::check()){
             return redirect()->back()->with("error", "Invalid credentials");
         }else{
+            event(new LoginUser(auth()->user(), $request->ip()));
             return redirect()->route("product.list");
         }
     }

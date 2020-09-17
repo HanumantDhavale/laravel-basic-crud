@@ -41,4 +41,8 @@ class User extends Authenticatable
         $this->attributes["password"] = bcrypt($value);
     }
 
+    public function logs(){
+        return $this->hasMany(LoginLog::class, "user_id");
+    }
+
 }
